@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'api'], function () {
+    Route::resource('comments', 'CommentController');
+    Route::get('/categories/{id}/topics', 'CategoryController@show');
+    Route::resource('categories', 'CategoryController');
+    Route::resource('topics', 'TopicController');
+    Route::resource('users', 'UserController');
 });

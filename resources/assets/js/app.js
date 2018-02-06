@@ -8,15 +8,23 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+window.KEY = "SPA-LARAVEL";
+Vue.use(require('vue-moment'));
+import routes from './routes/index.js';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import App from './components/App';	
+import largeNumber from './Filter/largeNumber';
+
+Vue.filter('largeNumber', largeNumber);
+
 
 const app = new Vue({
-    el: '#app'
+	router: routes,
+	el: '#app',
+	render: h => h(App)
 });
