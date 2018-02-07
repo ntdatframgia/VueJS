@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -34,7 +35,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        return Comment::create($request->only('content', 'user_id', 'topic_id'))->save()->fresh();
+        return Comment::create($request->only('body', 'user_id', 'topic_id'));
     }
 
     /**
@@ -45,7 +46,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        return Comment::where('topic_id', $id)->orderBy('created_at', 'desc')->paginate(5);
     }
 
     /**

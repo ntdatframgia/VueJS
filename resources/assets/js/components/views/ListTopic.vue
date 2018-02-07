@@ -28,10 +28,6 @@
 		},
 		created() {
 			this.getTopics(this.pagination.current_page);
-		},
-
-		mounted()
-		{
 			if(localStorage.getItem(window.KEY) !== null ) {
 				let locaPage = localStorage.getItem(window.KEY);
 				this.getTopics(locaPage);

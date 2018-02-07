@@ -12,12 +12,17 @@
            <span>{{ detailTopic.views}}</span>
            <small>Lượt xem</small>
        </div>
+        <comment></comment>
     </div>
-    
 </template>
 
 <script>
+    import Comment from './Comment.vue';
+
 export default {
+
+    components : { Comment }, 
+
     data: function() {
     return {
         detailTopic:null,
@@ -25,7 +30,6 @@ export default {
     },
     created() {
       this.detailTopic = JSON.parse(localStorage.getItem(window.KEY) || '[]');
-      console.log(this.detailTopic);
     },
     mounted() {
             this.getDetails(this.$route.params.topicId);
